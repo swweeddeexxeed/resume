@@ -1,479 +1,434 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Имя Фамилия | Резюме начинающего разработчика</title>
-    <!-- Подключаем шрифт Google Fonts для современного вида -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- Подключаем Font Awesome для иконок (бесплатно) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* СБРОС И БАЗОВЫЕ СТИЛИ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Резюме Сардорбека Хомидова</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one centered column. Hero, then sections that rise in on load, a timeline,
+   a two-up project grid, and a footer with copyable contacts. Image slots sit
+   wherever a picture belongs, so photos can be added later. */
+:root {
+  --bg: #F4F7F5;
+  --fg: #13201C;
+  --muted: #5A6B65;
+  --line: #D3DDD8;
+  --card: #FFFFFF;
+  --slot: #E6EEE9;
+  --accent: #0B7A62;
+  --accent-ink: #FFFFFF;
+  --chip: #E3EFEA;
+  --font-d: "Unbounded", system-ui, sans-serif;
+  --font-b: "Inter", system-ui, sans-serif;
+  --font-m: "JetBrains Mono", ui-monospace, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1513;
+    --fg: #E4EEEA;
+    --muted: #93A59E;
+    --line: #23352F;
+    --card: #131E1B;
+    --slot: #182723;
+    --accent: #5ED6B4;
+    --accent-ink: #0D1513;
+    --chip: #1A2D27;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1513;
+  --fg: #E4EEEA;
+  --muted: #93A59E;
+  --line: #23352F;
+  --card: #131E1B;
+  --slot: #182723;
+  --accent: #5ED6B4;
+  --accent-ink: #0D1513;
+  --chip: #1A2D27;
+  color-scheme: dark;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f7fb; /* Светлый фон, как рекомендуют */
-            color: #1e293b;
-            line-height: 1.5;
-            padding: 2rem 1rem;
-        }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-b);
+  font-size: 15px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-block: 28px 56px;
+}
+a { color: var(--accent); text-decoration: none; word-break: break-all; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 20px 35px -8px rgba(0, 34, 64, 0.15);
-            overflow: hidden;
-        }
+/* Entrance: rise in from a visible resting state */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d, 0s); }
 
-        /* ШАПКА С ФОТО (место для фото) */
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            padding: 2.5rem 3rem;
-            background: linear-gradient(145deg, #ffffff 0%, #f8fcff 100%);
-            border-bottom: 1px solid #e6edf4;
-        }
+@keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); }
+  70% { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
 
-        .photo-placeholder {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3.5rem;
-            font-weight: 500;
-            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.3);
-            border: 4px solid white;
-            flex-shrink: 0;
-        }
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 22px;
+  align-items: center;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.avatar-slot { width: 112px; height: 112px; }
+.status {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 500 12px/1 var(--font-m); color: var(--accent);
+  margin-bottom: 12px;
+}
+.status::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); animation: pulse 2.2s infinite;
+}
+h1 {
+  font: 700 clamp(22px, 5.5vw, 30px)/1.2 var(--font-d);
+  margin: 0 0 8px;
+  text-wrap: balance;
+}
+.role { margin: 0; color: var(--muted); }
+.facts {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 16px 0 0; padding: 0; list-style: none;
+}
+.facts li {
+  background: var(--chip); color: var(--fg);
+  padding: 5px 11px; border-radius: 999px; font-size: 13px;
+}
 
-        .title-section h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.25rem;
-        }
+/* Sections */
+section { margin-top: 36px; }
+h2 {
+  font: 500 13px/1 var(--font-m);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+p { margin: 0 0 12px; }
 
-        .title-section .subtitle {
-            font-size: 1.1rem;
-            color: #2563eb;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-        }
+/* Skill groups */
+.skill-group { margin-bottom: 16px; }
+.skill-group h3 { font: 600 14px var(--font-b); margin: 0 0 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.chips li {
+  font: 500 13px var(--font-m);
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  animation: rise 0.5s both;
+  animation-delay: var(--d, 0s);
+}
+.chips small { color: var(--muted); font-family: var(--font-b); font-size: 12px; margin-left: 4px; }
 
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 0.5rem;
-            font-size: 0.95rem;
-            color: #475569;
-        }
+/* Timeline */
+.timeline { position: relative; list-style: none; margin: 0; padding: 0 0 0 26px; }
+.timeline::before {
+  content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px;
+  background: var(--line); transform-origin: top;
+  animation: grow 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.timeline li { position: relative; padding-bottom: 22px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before {
+  content: ""; position: absolute; left: -26px; top: 6px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--accent);
+}
+.when { font: 500 12px var(--font-m); color: var(--accent); }
+.timeline h3 { font: 600 16px/1.35 var(--font-b); margin: 4px 0 4px; }
+.timeline p { color: var(--muted); margin: 0; }
 
-        .contact-info i {
-            width: 20px;
-            color: #2563eb;
-            margin-right: 8px;
-        }
+/* Project grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+@media (min-width: 560px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  min-width: 0;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.card h3 { font: 600 16px/1.3 var(--font-b); margin: 14px 4px 6px; }
+.card p { color: var(--muted); font-size: 14px; margin: 0 4px 10px; }
+.card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 4px; padding: 0; list-style: none; }
+.card .tags li { font: 500 11px var(--font-m); color: var(--accent); background: var(--chip); padding: 3px 8px; border-radius: 4px; }
 
-        .contact-info span {
-            display: inline-flex;
-            align-items: center;
-        }
+/* Image slots: replace the .slot div with an <img> when a picture is ready */
+.slot {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-width: 100%;
+  border: 1.5px dashed var(--line);
+  border-radius: 10px;
+  background: var(--slot);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 12px;
+  padding: 12px;
+}
+.slot small { display: block; opacity: 0.75; margin-top: 4px; }
+img { max-width: 100%; height: auto; display: block; border-radius: 10px; }
+.shot img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; height: auto; }
+.avatar-slot { aspect-ratio: 1; border-radius: 50%; }
+.cert-slot { aspect-ratio: 4 / 3; }
 
-        /* ОСНОВНОЙ КОНТЕНТ */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            padding: 2.5rem 3rem;
-        }
+.certs { display: grid; grid-template-columns: 1fr; gap: 18px; }
+@media (min-width: 560px) { .certs { grid-template-columns: 1fr 1fr; } }
+.cert h3 { font: 600 15px/1.35 var(--font-b); margin: 14px 4px 4px; }
+.cert p { color: var(--muted); font-size: 13px; margin: 0 4px; }
 
-        /* ЛЕВАЯ КОЛОНКА */
-        .left-column {
-            border-right: 1px solid #e6edf4;
-            padding-right: 2rem;
-        }
+/* About + stats */
+.about { font-size: 15px; }
+.stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  margin-top: 18px;
+}
+.stat {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; padding: 14px 10px; text-align: center;
+}
+.stat b { display: block; font: 700 22px var(--font-d); color: var(--accent); }
+.stat span { font-size: 12px; color: var(--muted); }
 
-        .section {
-            margin-bottom: 2rem;
-        }
+/* Contacts */
+.contacts { display: grid; gap: 10px; }
+.contact {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; padding: 12px 14px; min-width: 0;
+}
+.contact span.k { font: 500 12px var(--font-m); color: var(--muted); flex: none; }
+.contact .v { overflow-wrap: anywhere; text-align: right; }
+.copy {
+  font: 500 12px var(--font-b); color: var(--accent);
+  background: var(--chip); border: 0; border-radius: 6px;
+  padding: 6px 10px; cursor: pointer; flex: none;
+}
 
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #2563eb;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-        }
+footer { margin-top: 40px; color: var(--muted); font-size: 12px; text-align: center; }
 
-        .section-title i {
-            margin-right: 10px;
-            font-size: 1rem;
-            background-color: #e0f2fe;
-            padding: 6px;
-            border-radius: 8px;
-            color: #0369a1;
-        }
-/* Цель */
-        .goal-box {
-            background-color: #f0f9ff;
-            padding: 1.2rem;
-            border-radius: 16px;
-            border-left: 4px solid #2563eb;
-            margin-bottom: 2rem;
-        }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media (max-width: 480px) {
+  .hero { grid-template-columns: 1fr; }
+  .avatar-slot { width: 96px; }
+}
+</style>
 
-        .goal-box p {
-            font-style: italic;
-            color: #0c4a6e;
-            font-size: 0.95rem;
-        }
+<main class="wrap">
 
-        /* Навыки списком */
-        .skills-list {
-            list-style: none;
-        }
-
-        .skills-list li {
-            margin-bottom: 0.9rem;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .skills-list li i {
-            color: #2563eb;
-            width: 22px;
-            margin-right: 8px;
-            font-size: 0.9rem;
-            margin-top: 3px;
-        }
-
-        .skill-label {
-            font-weight: 600;
-            color: #334155;
-            min-width: 90px;
-            font-size: 0.95rem;
-        }
-
-        .skill-desc {
-            color: #64748b;
-            font-size: 0.95rem;
-        }
-
-        /* Личные качества */
-        .qualities {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 0.5rem;
-        }
-
-        .quality-tag {
-            background-color: #eef2ff;
-            color: #1e40af;
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* ПРАВАЯ КОЛОНКА */
-        .right-column .section {
-            margin-bottom: 2.2rem;
-        }
-
-        .education-item, .project-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .education-item h3, .project-item h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #0f172a;
-            margin-bottom: 0.25rem;
-        }
-
-        .meta {
-            font-size: 0.9rem;
-            color: #2563eb;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .meta i {
-            font-size: 0.8rem;
-            margin-right: 3px;
-            color: #64748b;
-        }
-
-        .project-item p, .education-item p {
-            color: #475569;
-            font-size: 0.95rem;
-            margin-bottom: 0.4rem;
-            padding-left: 0.5rem;
-            border-left: 2px solid #cbd5e1;
-            padding-left: 1rem;
-        }
-
-        .tech-badge {
-            display: inline-block;
-            background-color: #f1f5f9;
-            color: #334155;
-            border-radius: 16px;
-            padding: 0.2rem 0.8rem;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Дополнительно блок */
-        .extra-box {
-            background-color: #f8fafc;
-            padding: 1.2rem;
-            border-radius: 16px;
-            margin-top: 1rem;
-        }
-
-        .extra-box p {
-            margin-bottom: 0.6rem;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #e2e8f0;
-            margin: 1rem 0;
-        }
-
-        /* ФУТЕР С ЗАРПЛАТОЙ */
-        .salary-footer {
-            background-color: #0f172a;
-            color: white;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .salary-info h3 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #94a3b8;
-            margin-bottom: 0.25rem;
-        }
-
-        .salary-info p {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #facc15;
-        }
-
-        .salary-note {
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-        }
-
-        .salary-note i {
-            color: #facc15;
-            margin-right: 5px;
-        }
-/* Адаптивность */
-        @media (max-width: 750px) {
-            .header {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.5rem;
-            }
-            .main-content {
-                grid-template-columns: 1fr;
-                padding: 1.5rem;
-            }
-            .left-column {
-                border-right: 0;
-                padding-right: 0;
-            }
-            .salary-footer {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.5rem;
-            }
-            .contact-info {
-                justify-content: center;
-            }
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-
-    <div class="header">
-        <div class="photo-placeholder">
-            <<!-- Иконка вместо фото -->
-        </div>
-        <div class="title-section">
-            <h1>Хомидов Сардорбек</h1>
-            <div class="subtitle">Начинающий веб-разработчик (Frontend / HTML-верстальщик)</div>
-            <div class="contact-info">
-                <span><i class="fas fa-phone-alt"></i> +7 968 8999 7166</span>
-                <span><i class="fas fa-envelope"></i> sardorbekhomidov54@gmail.com</span>
-                <span><i class="fas fa-map-marker-alt"></i> Москва</span>
-                <span><i class="fab fa-github"></i> https://github.com/swweeddeexxeed</span>
-            </div>
-        </div>
+  <header class="hero">
+    <div class="slot avatar-slot rise" style="--d:0s" role="img" aria-label="Место для фото">Фото<small>замените</small></div>
+    <div class="rise" style="--d:0.08s">
+      <div class="status">Открыт к стажировке</div>
+      <h1>Сардорбек Хомидов</h1>
+      <p class="role">Начинающий фронтенд-разработчик · HTML-верстальщик, с навыками в ИИ</p>
+      <ul class="facts">
+        <li>Москва, уже на месте</li>
+        <li>Удалённо или офис</li>
+        <li>50 000 – 70 000 ₽</li>
+        <li>Студент 3 курса</li>
+      </ul>
     </div>
+  </header>
 
-    <!-- ОСНОВНАЯ ЧАСТЬ -->
-    <div class="main-content">
-        <!-- ЛЕВАЯ КОЛОНКА -->
-        <div class="left-column">
-            <!-- ЦЕЛЬ (О себе кратко) -->
-            <div class="goal-box">
-                <p><i class="fas fa-quote-right" style="color: #2563eb; opacity: 0.5; margin-right: 5px;"></i> 
-                Ответственный и усидчивый студент 3 курса. Ищу возможность расти в веб-разработке. 
-                Быстро учусь, умею работать с информацией, готов выполнять задачи и приносить пользу команде. 
-                Рассматриваю стажировку, полный день, гибкий график и удалёнку.
-                </p>
-            </div>
-
-            <!-- НАВЫКИ (профессиональные) -->
-            <div class="section">
-                <div class="section-title"><i class="fas fa-code"></i> Навыки</div>
-                <ul class="skills-list">
-                    <li><i class="fab fa-html5"></i><span class="skill-label">HTML:</span><span class="skill-desc"> семантическая вёрстка, SVG, Canvas (начальный)</span></li>
-                    <li><i class="fab fa-css3-alt"></i><span class="skill-label">CSS:</span><span class="skill-desc"> флексы, адаптив, анимации, БЭМ, Bootstrap</span></li>
-                    <li><i class="fas fa-database"></i><span class="skill-label">Базы данных:</span><span class="skill-desc"> SQL (MySQL, SQLite) — учебные проекты</span></li>
-                    <li><i class="fab fa-js"></i><span class="skill-label">JavaScript:</span><span class="skill-desc"> базовый уровень (ES6), jQuery (знаком)</span></li>
-                    <li><i class="fas fa-tools"></i><span class="skill-label">Инструменты:</span><span class="skill-desc"> Git/GitHub, VS Code, Figma, Photoshop (начальный)</span></li>
-                    <li><i class="fas fa-globe"></i><span class="skill-label">Языки:</span><span class="skill-desc"> Русский (свободно), Узбекский (родной), Английский (чтение docs)</span></li>
-                </ul>
-            </div>
-
-            <!-- ЛИЧНЫЕ КАЧЕСТВА (софт-скиллы) -->
-            <div class="section">
-                <div class="section-title"><i class="fas fa-heart"></i> Личные качества</div>
-                <div class="qualities">
-                    <span class="quality-tag">Быстро учусь</span>
-                    <span class="quality-tag">Внимательный к деталям</span>
-<span class="quality-tag">Усидчивый</span>
-                    <span class="quality-tag">Умею искать информацию</span>
-                    <span class="quality-tag">Ответственный</span>
-                    <span class="quality-tag">Командная работа</span>
-                </div>
-            </div>
-
-            <!-- ДОПОЛНИТЕЛЬНО -->
-            <div class="section">
-                <div class="section-title"><i class="fas fa-ellipsis-h"></i> Дополнительно</div>
-                <div class="extra-box">
-                    <p><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 8px;"></i> Есть учебные проекты (покажу на собеседовании)</p>
-                    <p><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 8px;"></i> Готов к стажировке / работе с наставником</p>
-                    <p><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 8px;"></i> Открыт к переезду в Москву</p>
-                    <p><i class="fas fa-calendar-alt" style="color: #2563eb;"></i> Дата рождения: 01.01.2005 (20 лет)</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ПРАВАЯ КОЛОНКА -->
-        <div class="right-column">
-            <!-- ОБРАЗОВАНИЕ -->
-            <div class="section">
-                <div class="section-title"><i class="fas fa-graduation-cap"></i> Образование</div>
-                <div class="education-item">
-                    <h3>Среднее профессиональное образование (ИТ / программирование)</h3>
-                    <div class="meta"><i class="fas fa-building"></i> Название колледжа, Ташкент</div>
-                    <div class="meta"><i class="fas fa-calendar"></i> 2022 — 202_ (3 курс)</div>
-                    <p>Специальность: Информационные технологии. Углублённое изучение веб-технологий и баз данных.</p>
-                </div>
-                <!-- Можно добавить курсы -->
-                <div class="education-item">
-                    <h3>Дополнительные курсы</h3>
-                    <div class="meta"><i class="fas fa-laptop-code"></i> Онлайн-курсы по вёрстке (HTML, CSS, JavaScript)</div>
-                    <p>Сертификаты по основам frontend-разработки, Git и Figma.</p>
-                </div>
-            </div>
-
-            <!-- ПРАКТИКА И ПРОЕКТЫ (Опыт) -->
-            <div class="section">
-                <div class="section-title"><i class="fas fa-briefcase"></i> Практика и проекты</div>
-                
-                <div class="project-item">
-                    <h3>Учебная практика: Веб-сайт с подключением БД</h3>
-                    <div class="meta"><i class="fas fa-calendar"></i> 2024 (2 месяца)</div>
-                    <p>Сверстал страницы на HTML и CSS, подключил MySQL, реализовал базовую логику отображения данных. Оформил документацию и защитил проект.</p>
-                    <span class="tech-badge">HTML</span>
-                    <span class="tech-badge">CSS</span>
-                    <span class="tech-badge">MySQL</span>
-                    <span class="tech-badge">VS Code</span>
-                </div>
-
-                <div class="project-item">
-                    <h3>Пет-проект: Лендинг по макету из Figma</h3>
-                    <div class="meta"><i class="fas fa-calendar"></i> 2024</div>
-                    <p>Адаптивная вёрстка с использованием Flexbox и медиазапросов. Оптимизация изображений, базовая анимация.</p>
-                    <span class="tech-badge">Figma</span>
-                    <span class="tech-badge">CSS Flex</span>
-                    <span class="tech-badge">Git</span>
-                </div>
-
-                <div class="project-item">
-                    <h3>Небольшое приложение на JavaScript</h3>
-                    <div class="meta"><i class="fas fa-calendar"></i> 2024</div>
-                    <p>Работа с DOM, простые скрипты. Выложено на GitHub Pages.</p>
-                    <span class="tech-badge">JavaScript</span>
-                    <span class="tech-badge">GitHub</span>
-                </div>
-            </div>
-<!-- РАССКАЗ О СЕБЕ (как пришёл в разработку) -->
-            <div class="section">
-                <div class="section-title"><i class="fas fa-user-edit"></i> О себе</div>
-                <p style="margin-bottom: 1rem; color: #334155;">В разработку пришёл через интерес к созданию сайтов и решению логических задач. 
-                Постоянно изучаю новые технологии, сейчас углубляю JavaScript и осваиваю сборщики (Gulp). 
-                В свободное время участвую в open source переводах документации, увлекаюсь шахматами и бегом.</p>
-                <p style="font-weight: 500; color: #0f172a;"><i class="fas fa-arrow-right" style="color: #2563eb;"></i> Мои проекты можно посмотреть на GitHub.</p>
-            </div>
-        </div>
+  <section class="rise" style="--d:0.2s" aria-labelledby="about">
+    <h2 id="about">О себе</h2>
+    <p class="about">Ответственный и усидчивый студент 3 курса колледжа связи № 54. В разработку пришёл через интерес к созданию сайтов и решению логических задач. Сейчас углубляю JavaScript и осваиваю сборщики (Gulp). Ищу стажировку с наставником: полный день, гибкий график, удалёнка или офис.</p>
+    <p>Развиваюсь и в сфере ИИ: сертификаты Google и IBM, свой Telegram-бот с интеграцией нескольких ИИ-моделей.</p>
+    <div class="stats">
+      <div class="stat"><b>3</b><span>пет-проекта и учебная практика</span></div>
+      <div class="stat"><b>2</b><span>сертификата по ИИ</span></div>
+      <div class="stat"><b>1</b><span>Telegram-бот на ИИ</span></div>
     </div>
+  </section>
 
-    <!-- ФУТЕР С ЗАРПЛАТОЙ (расчёт по Москве) -->
-    <div class="salary-footer">
-        <div class="salary-info">
-            <h3>Желаемая зарплата (средняя по рынку)</h3>
-            <p>50 000 — 70 000 ₽</p>
-        </div>
-        <div class="salary-note">
-            <i class="fas fa-chart-line"></i> Средняя зарплата Junior Web-разработчика / HTML-верстальщика в Москве (2025)
-        </div>
+  <section class="rise" style="--d:0.3s" aria-labelledby="skills">
+    <h2 id="skills">Навыки</h2>
+    <div class="skill-group">
+      <h3>Вёрстка и фронтенд</h3>
+      <ul class="chips">
+        <li style="--d:0.35s">HTML <small>семантика, SVG, Canvas (начальный)</small></li>
+        <li style="--d:0.4s">CSS <small>флексы, адаптив, анимации, БЭМ</small></li>
+        <li style="--d:0.45s">Bootstrap</li>
+        <li style="--d:0.5s">JavaScript <small>ES6, базовый</small></li>
+        <li style="--d:0.55s">jQuery <small>знаком</small></li>
+        <li style="--d:0.6s">Gulp</li>
+      </ul>
     </div>
-    <!-- Маленькая сноска: средняя зарплата найдена на основе анализа hh.ru и habr карьера для начинающих -->
-</div>
-<!-- Дополнительное примечание про зарплату (мелкий текст) -->
-<div style="max-width: 1000px; margin: 1rem auto 0; padding: 0 1rem; font-size: 0.8rem; color: #64748B; text-align: center;">
-    *Анализ рынка: junior frontend-разработчики / верстальщики в Москве в среднем получают 70–90 тыс. ₽ (данные hh.ru, Хабр Карьера, 2025). С опытом от полугода — до 100–120 тыс.
-</div>
-</body>
-</html>
+    <div class="skill-group">
+      <h3>Данные и инструменты</h3>
+      <ul class="chips">
+        <li style="--d:0.65s">SQL <small>MySQL, SQLite, учебные проекты</small></li>
+        <li style="--d:0.7s">Git / GitHub</li>
+        <li style="--d:0.75s">VS Code</li>
+        <li style="--d:0.8s">Figma</li>
+        <li style="--d:0.85s">Photoshop <small>начальный</small></li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>ИИ и Python</h3>
+      <ul class="chips">
+        <li style="--d:0.9s">Промпт-инжиниринг</li>
+        <li style="--d:0.95s">Python</li>
+        <li style="--d:1s">Telegram Bot API</li>
+        <li style="--d:1.05s">Интеграция AI API</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="rise" style="--d:0.4s" aria-labelledby="exp">
+    <h2 id="exp">Опыт и обучение</h2>
+    <ol class="timeline">
+      <li>
+        <span class="when">2023 — 2027</span>
+        <h3>Колледж связи № 54, Москва</h3>
+        <p>«Информационные технологии (программирование)», 3 курс. Диплом призёра городской олимпиады по алгоритмическому программированию.</p>
+      </li>
+      <li>
+        <span class="when">Онлайн-курсы</span>
+        <h3>Вёрстка: HTML, CSS, JavaScript</h3>
+        <p>Освоил основы вёрстки и базового JavaScript.</p>
+      </li>
+      <li>
+        <span class="when">2024 · 2 месяца</span>
+        <h3>Учебная практика: сайт с базой данных</h3>
+        <p>Сверстал страницы, подключил MySQL и вывел данные на страницы. Защитил документированный проект.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="rise" style="--d:0.5s" aria-labelledby="projects">
+    <h2 id="projects">Проекты</h2>
+    <div class="grid">
+
+      <article class="card">
+        <figure class="shot" style="margin:0">
+          <div class="slot" role="img" aria-label="Скриншот: Telegram-бот Sahai_bot">Скриншот бота<small>замените на картинку</small></div>
+        </figure>
+        <h3>Telegram-бот Sahai_bot</h3>
+        <p>Бот с автоматизацией на нескольких ИИ-моделях. Помогает решать задачи, генерирует ответы и повышает продуктивность.</p>
+        <ul class="tags"><li>Python</li><li>Telegram Bot API</li><li>AI API</li></ul>
+      </article>
+
+      <article class="card">
+        <figure class="shot" style="margin:0">
+          <div class="slot" role="img" aria-label="Скриншот: лендинг по макету из Figma">Скриншот лендинга<small>замените на картинку</small></div>
+        </figure>
+        <h3>Лендинг по макету из Figma</h3>
+        <p>Адаптивная вёрстка на Flexbox и медиазапросах. Оптимизация изображений и базовая анимация.</p>
+        <ul class="tags"><li>Figma</li><li>CSS Flex</li><li>Git</li></ul>
+      </article>
+
+      <article class="card">
+        <figure class="shot" style="margin:0">
+          <div class="slot" role="img" aria-label="Скриншот: JavaScript-приложение">Скриншот приложения<small>замените на картинку</small></div>
+        </figure>
+        <h3>Приложение на JavaScript</h3>
+        <p>Работа с DOM и простые скрипты. Выложено на GitHub Pages.</p>
+        <ul class="tags"><li>JavaScript</li><li>GitHub Pages</li></ul>
+      </article>
+
+      <article class="card">
+        <figure class="shot" style="margin:0">
+          <div class="slot" role="img" aria-label="Скриншот: сайт учебной практики">Скриншот сайта<small>замените на картинку</small></div>
+        </figure>
+        <h3>Сайт с подключением БД</h3>
+        <p>Учебная практика: страницы на HTML и CSS, данные из MySQL, базовая логика отображения.</p>
+        <ul class="tags"><li>HTML</li><li>CSS</li><li>MySQL</li></ul>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="rise" style="--d:0.6s" aria-labelledby="certs">
+    <h2 id="certs">Сертификаты</h2>
+    <div class="certs">
+      <article class="card cert">
+        <div class="slot cert-slot" role="img" aria-label="Сертификат Google AI Essentials">Сертификат<small>замените на картинку</small></div>
+        <h3>Google AI Essentials</h3>
+        <p>Google, август 2026. 5 курсов: основы ИИ, продуктивность с ИИ-инструментами, промпт-инжиниринг, ответственное использование ИИ.</p>
+      </article>
+      <article class="card cert">
+        <div class="slot cert-slot" role="img" aria-label="Сертификат IBM Enterprise AI Business Solutions">Сертификат<small>замените на картинку</small></div>
+        <h3>Enterprise AI Business Solutions</h3>
+        <p>IBM SkillsBuild, август 2026. <a href="https://www.credly.com/go/y1ozflfe" target="_blank" rel="noopener">Подтверждение в Credly</a></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="rise" style="--d:0.7s" aria-labelledby="contacts">
+    <h2 id="contacts">Контакты</h2>
+    <div class="contacts">
+      <div class="contact">
+        <span class="k">Телефон</span>
+        <span class="v">+7 968 899 7166</span>
+        <button class="copy" type="button" data-copy="+79688997166">Копировать</button>
+      </div>
+      <div class="contact">
+        <span class="k">Email</span>
+        <span class="v">sardorbekhomidov54@gmail.com</span>
+        <button class="copy" type="button" data-copy="sardorbekhomidov54@gmail.com">Копировать</button>
+      </div>
+      <div class="contact">
+        <span class="k">GitHub</span>
+        <a class="v" href="https://github.com/swweeddeexxeed" target="_blank" rel="noopener">github.com/swweeddeexxeed</a>
+      </div>
+      <div class="contact">
+        <span class="k">Telegram-бот</span>
+        <a class="v" href="https://t.me/SweddTJ_bot" target="_blank" rel="noopener">@SweddTJ_bot</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>Резюме · Москва · 2026</footer>
+</main>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var text = btn.getAttribute('data-copy');
+    var done = function () { btn.textContent = 'Скопировано'; setTimeout(function () { btn.textContent = 'Копировать'; }, 1600); };
+    try {
+      navigator.clipboard.writeText(text).then(done, function () { btn.textContent = 'Выделите текст'; });
+    } catch (e) {
+      btn.textContent = 'Выделите текст';
+    }
+  });
+});
+</script>
+
+</body></html>
